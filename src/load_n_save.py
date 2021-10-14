@@ -1,4 +1,4 @@
-from src.utils.all_utils import read_yaml, create_directory
+from src.utils.all_utils import read_yaml, create_directory,save_local_df
 import argparse
 import pandas as pd
 import os
@@ -14,7 +14,6 @@ def get_data(config_path):
     """
     This function saves dataset after merging multiple csv files from various folders into the local directory
     :param config_path:
-    :return:saves merged dataset in local directory
     """
     # read the config
     config = read_yaml(config_path)
@@ -41,7 +40,7 @@ def get_data(config_path):
                 current_data['label'] = dirpath[11:]
                 df = pd.concat([df, current_data])
     df.rename(columns={'# Columns: time': 'time'}, inplace=True)
-    df.to_csv(raw_local_file_path, index=False)
+    save_local_df(df,raw_local_file_path)          # saving the dataframe to CSV file
     logging.info("Successfully merged data")
 
 
