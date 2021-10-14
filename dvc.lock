@@ -4,8 +4,8 @@ stages:
     cmd: python src/load_n_save.py --config=config/config.yaml
     deps:
     - path: config/config.yaml
-      md5: 90fa6fcd0cec91d90da59714267a1175
-      size: 173
+      md5: 1e4e282a3e690e9f27b928fc61037883
+      size: 323
     - path: data_given/bending1
       md5: 5d8b3100f2a54b926babe04676e8873a.dir
       size: 132926
@@ -35,12 +35,34 @@ stages:
       size: 283590
       nfiles: 15
     - path: src/load_n_save.py
-      md5: 83dc1d9116c698ead4cae677ac20cf5e
-      size: 2225
+      md5: 062153a87d52f253119dc722b1bfc386
+      size: 2224
     - path: src/utils/all_utils.py
-      md5: 6d1c23a41ea150ec1105b073f97e13d8
-      size: 736
+      md5: f1285801cf2600bb7d106056abb64ac9
+      size: 1367
     outs:
     - path: data/raw/final_data.csv
       md5: 26bd966b0f146af83718035605b480e4
       size: 1894089
+  preprocess_data:
+    cmd: python src/EDA_and_Preprocessing.py --config=config/config.yaml
+    deps:
+    - path: config/config.yaml
+      md5: 1e4e282a3e690e9f27b928fc61037883
+      size: 323
+    - path: data/raw/final_data.csv
+      md5: 26bd966b0f146af83718035605b480e4
+      size: 1894089
+    - path: src/EDA_and_Preprocessing.py
+      md5: 4f9e85ed3c265915ab1ef923622aeaca
+      size: 5094
+    - path: src/utils/all_utils.py
+      md5: f1285801cf2600bb7d106056abb64ac9
+      size: 1367
+    outs:
+    - path: data/EDA_report/profiling_report.html
+      md5: 68dd49743541d13b4a016392686ab844
+      size: 3125210
+    - path: data/preprocess_data/preprocess_Data.csv
+      md5: 2528fefc81c2e13e51bb4b45b4fa53ca
+      size: 1475321

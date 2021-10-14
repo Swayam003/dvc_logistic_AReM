@@ -14,3 +14,13 @@ stages:
       - data_given/walking
     outs:
       - data/raw/final_data.csv
+  preprocess_data:
+    cmd: python src/EDA_and_Preprocessing.py --config=config/config.yaml
+    deps:
+      - src/EDA_and_Preprocessing.py
+      - src/utils/all_utils.py
+      - config/config.yaml
+      - data/raw/final_data.csv
+    outs:
+      - data/EDA_report/profiling_report.html
+      - data/preprocess_data/preprocess_Data.csv
