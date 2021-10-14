@@ -35,12 +35,12 @@ stages:
       size: 283590
       nfiles: 15
     - path: src/load_n_save.py
-      md5: f71f6e3cca17ebf2f5cc4976787a8d30
-      size: 2233
+      md5: 83dc1d9116c698ead4cae677ac20cf5e
+      size: 2225
     - path: src/utils/all_utils.py
-      md5: f76587d79008d83e48a6de320c0335e5
-      size: 557
+      md5: 6d1c23a41ea150ec1105b073f97e13d8
+      size: 736
     outs:
     - path: data/raw/final_data.csv
-      md5: 01171b581fad48e12c9c07901f585649
-      size: 2274222
+      md5: 26bd966b0f146af83718035605b480e4
+      size: 1894089

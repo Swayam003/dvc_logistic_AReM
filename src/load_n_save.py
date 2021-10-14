@@ -4,11 +4,10 @@ import pandas as pd
 import os
 import logging
 
-#logging not to implement here
+#logging
 logging_str = "[%(asctime)s: %(levelname)s: %(module)s] %(message)s"
 log_dir = "logg"
 os.makedirs(log_dir, exist_ok=True)
-#create_directory(dirs=[log_dir]) this is not working, why?
 logging.basicConfig(filename= os.path.join(log_dir,"logging.log"),level=logging.INFO, format=logging_str, filemode="a")
 
 def get_data(config_path):
@@ -36,19 +35,24 @@ def get_data(config_path):
     # Merging files and saving Merged dataset
     df = pd.DataFrame()
     for dirpath, dirnames, files in os.walk(data_path):
-        #print(f'Found directory: {dirpath}')
         for file_name in files:
             if file_name.endswith('.csv'):
-                current_data = pd.read_csv(dirpath + "/" + file_name, encoding="ISO-8859-1", skiprows=4,
-                                           error_bad_lines=False)
-                current_data['label'] = dirpath[2:]
+                current_data = pd.read_csv(dirpath + "/" + file_name, encoding="ISO-8859-1", skiprows=4,error_bad_lines=False)
+                current_data['label'] = dirpath[11:]
                 df = pd.concat([df, current_data])
-                #print(file_name)
     df.rename(columns={'# Columns: time': 'time'}, inplace=True)
     df.to_csv(raw_local_file_path, index=False)
     logging.info("Successfully merged data")
+
+
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
-    args.add_argument("--config", "-c", default="config\config.yaml")
+    args.add_argument("--config", "-c", default="config/config.yaml")
     parsed_args = args.parse_args()
-    get_data(parsed_args.config)
+    try:
+        logging.info(">>>>> stage_01 started")
+        get_data(config_path=parsed_args.config)
+        logging.info("stage_01 completed!>>>>>")
+    except Exception as e:
+        logging.exception(e)
+        raise e
