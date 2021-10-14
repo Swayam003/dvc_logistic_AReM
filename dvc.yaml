@@ -24,3 +24,17 @@ stages:
     outs:
       - data/EDA_report/profiling_report.html
       - data/preprocess_data/preprocess_Data.csv
+  scaling_n_spilliting_data:
+    cmd: python src/scaling_n_splitting.py --config=config/config.yaml --params=params.yaml
+    deps:
+      - src/scaling_n_splitting.py
+      - src/utils/all_utils.py
+      - config/config.yaml
+      - params.yaml
+      - data/preprocess_data/preprocess_Data.csv
+    outs:
+      - models/Standardized_model/StandardScalar_model.sav
+      - data/splitted_data/x_train.csv
+      -  data/splitted_data/x_test.csv
+      - data/splitted_data/y_train.csv
+      - data/splitted_data/y_test.csv

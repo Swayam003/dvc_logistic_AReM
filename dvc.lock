@@ -4,8 +4,8 @@ stages:
     cmd: python src/load_n_save.py --config=config/config.yaml
     deps:
     - path: config/config.yaml
-      md5: 1e4e282a3e690e9f27b928fc61037883
-      size: 323
+      md5: f19a8e9c234de01e1355184918906d80
+      size: 608
     - path: data_given/bending1
       md5: 5d8b3100f2a54b926babe04676e8873a.dir
       size: 132926
@@ -38,8 +38,8 @@ stages:
       md5: 062153a87d52f253119dc722b1bfc386
       size: 2224
     - path: src/utils/all_utils.py
-      md5: f1285801cf2600bb7d106056abb64ac9
-      size: 1367
+      md5: b6a6a9daaf42228402c24f0698362842
+      size: 1836
     outs:
     - path: data/raw/final_data.csv
       md5: 26bd966b0f146af83718035605b480e4
@@ -48,21 +48,55 @@ stages:
     cmd: python src/EDA_and_Preprocessing.py --config=config/config.yaml
     deps:
     - path: config/config.yaml
-      md5: 1e4e282a3e690e9f27b928fc61037883
-      size: 323
+      md5: f19a8e9c234de01e1355184918906d80
+      size: 608
     - path: data/raw/final_data.csv
       md5: 26bd966b0f146af83718035605b480e4
       size: 1894089
     - path: src/EDA_and_Preprocessing.py
-      md5: 4f9e85ed3c265915ab1ef923622aeaca
-      size: 5094
+      md5: 09022bd4d15c789c584fd9c43234a037
+      size: 5219
     - path: src/utils/all_utils.py
-      md5: f1285801cf2600bb7d106056abb64ac9
-      size: 1367
+      md5: b6a6a9daaf42228402c24f0698362842
+      size: 1836
     outs:
     - path: data/EDA_report/profiling_report.html
-      md5: 68dd49743541d13b4a016392686ab844
-      size: 3125210
+      md5: 2790968e90e0ab87899c2a4ef31ab6ef
+      size: 3125198
     - path: data/preprocess_data/preprocess_Data.csv
       md5: 2528fefc81c2e13e51bb4b45b4fa53ca
       size: 1475321
+  scaling_n_spilliting_data:
+    cmd: python src/scaling_n_splitting.py --config=config/config.yaml --params=params.yaml
+    deps:
+    - path: config/config.yaml
+      md5: f19a8e9c234de01e1355184918906d80
+      size: 608
+    - path: data/preprocess_data/preprocess_Data.csv
+      md5: 2528fefc81c2e13e51bb4b45b4fa53ca
+      size: 1475321
+    - path: params.yaml
+      md5: 3459d0a49b54c9870d21da524350e178
+      size: 44
+    - path: src/scaling_n_splitting.py
+      md5: dfaa776a5ff7d5dcb33c329840bb4007
+      size: 5645
+    - path: src/utils/all_utils.py
+      md5: b6a6a9daaf42228402c24f0698362842
+      size: 1836
+    outs:
+    - path: data/splitted_data/x_test.csv
+      md5: 8bf6928bbc7585bfd1ecd35fb9a1c603
+      size: 1009236
+    - path: data/splitted_data/x_train.csv
+      md5: eeec86c141b6b0fbdcd5ea290c2b535b
+      size: 4035439
+    - path: data/splitted_data/y_test.csv
+      md5: f19dbc9702c72f21aa2392c57188825f
+      size: 75805
+    - path: data/splitted_data/y_train.csv
+      md5: 9a768855f9f0ed662e4f8905d40846d2
+      size: 303382
+    - path: models/Standardized_model/StandardScalar_model.sav
+      md5: 971bc81e12ae3732e1ec9280693caf28
+      size: 881
