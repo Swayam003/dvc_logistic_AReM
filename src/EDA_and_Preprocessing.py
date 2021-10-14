@@ -12,7 +12,7 @@ logging.basicConfig(filename=os.path.join(log_dir, 'logging.log'), level=logging
 
 def read_raw_data(config_path):
     """
-    his function returns path to CSV file
+    This function returns path to CSV file
     :param config_path: path to config file
     :return: path to config file
     """
@@ -30,14 +30,14 @@ def read_raw_data(config_path):
 
 def EDA(config_path):
     """
-    This function reading CSV file and producing Report file after creating directory for the same report file
+    This function reads CSV file and producing Report file after creating directory for the same report file
     :param config_path: path to config file
     """
     try:
         config = read_yaml(config_path)  # reading config file
         logging.info("Read the yaml successfully")
         raw_local_file_path = read_raw_data(config_path) # path to final_data.csv
-
+        logging.info("Read the path to csv file successfully")
         data_dir = config["data"]['data_dir']
         EDA_report_dir = config['data']['EDA_report_dir']
         EDA_report_dir_path = os.path.join(data_dir, EDA_report_dir)   # path: data/EDA_report
@@ -60,6 +60,7 @@ def preprocessing(config_path):
     """
     try:
         raw_local_file_path = read_raw_data(config_path)  # path to final_data.csv
+        logging.info("Read the path to csv file successfully")
         config = read_yaml(config_path)  # reading config file
         logging.info("Read the yaml successfully")
 
