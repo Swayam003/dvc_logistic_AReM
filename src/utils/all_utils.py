@@ -1,6 +1,7 @@
 import yaml
 import os
 import logging
+import pickle
 
 def read_yaml(path_to_yaml: str) -> dict:
     """
@@ -13,7 +14,7 @@ def read_yaml(path_to_yaml: str) -> dict:
             content = yaml.safe_load(yaml_file)
         return content
     except Exception as e:
-        logging.exception("error while loading yaml file")
+        logging.exception("error while loading yaml file:  ",e)
         raise e
 
 def create_directory(dirs: list):
@@ -42,4 +43,18 @@ def save_local_df(data, data_path, index_status=False):
         logging.info(f"data is saved at {data_path}")
     except Exception as e:
         logging.exception("error while saving dataframe to csv file: ", e)
+        raise e
+
+def save_models(model, model_file_path: str):
+    """
+    This function is used to save model files
+    :param model: model object
+    :param model_file_path: model file path
+    """
+    try:
+        with open(model_file_path, "wb") as f:
+            pickle.dump(model, f)
+        logging.info(f"Model is saved at {model_file_path}")
+    except Exception as e:
+        logging.exception("error while saving model:  ",e)
         raise e
