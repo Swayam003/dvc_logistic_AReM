@@ -10,6 +10,17 @@ data:
   EDA_file: profiling_report.html
   preprocess_data_dir: preprocess_data
   preprocess_data_file: preprocess_Data.csv
+  splitted_data_dir: splitted_data
+  x_train_data_file: x_train.csv
+  x_test_data_file: x_test.csv
+  y_train_data_file: y_train.csv
+  y_test_data_file: y_test.csv
+
+models:
+  model_dir: models
+  scaled_model: Standardized_model
+  scaled_model_file: StandardScalar_model.sav
+
 
 logs:
   log_dir: logg
