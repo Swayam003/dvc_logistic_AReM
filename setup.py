@@ -10,7 +10,7 @@ setup(
     description="A small package for dvc pipeline ML - Logistics Regresion AReM",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/c17hawke/dvc-ML-demo-AIOps",
+    url="https://github.com/Swayam003/dvc_logistic_AReM",
     author_email="swayamagarwal003@gmail.com",
     packages=["src"],
     python_requires=">=3.7",
