@@ -1,0 +1,12 @@
+
+data_source:
+  s3_source: data_given
+
+data:
+  data_dir: data
+  raw_local_dir: raw
+  raw_local_file: final_data.csv
+
+logs:
+  log_dir: logg
+  log_file: logging.log
