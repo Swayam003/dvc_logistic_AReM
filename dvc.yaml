@@ -1,0 +1,16 @@
+stages:
+  load_data:
+    cmd: python src/load_n_save.py --config=config/config.yaml
+    deps:
+      - src/load_n_save.py
+      - src/utils/all_utils.py
+      - config/config.yaml
+      - data_given/bending1
+      - data_given/bending2
+      - data_given/cycling/
+      - data_given/lying
+      - data_given/sitting
+      - data_given/standing
+      - data_given/walking
+    outs:
+      - data/raw/final_data.csv

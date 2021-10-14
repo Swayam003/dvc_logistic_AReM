@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_n_save.py --config=config/config.yaml
+    deps:
+    - path: config/config.yaml
+      md5: 90fa6fcd0cec91d90da59714267a1175
+      size: 173
+    - path: data_given/bending1
+      md5: 5d8b3100f2a54b926babe04676e8873a.dir
+      size: 132926
+      nfiles: 7
+    - path: data_given/bending2
+      md5: cab2b16939c123068011d720743ee0a1.dir
+      size: 113204
+      nfiles: 6
+    - path: data_given/cycling/
+      md5: f12e633ea1ec289b054ac6780ff68403.dir
+      size: 283599
+      nfiles: 15
+    - path: data_given/lying
+      md5: b771f6b72b73fdd87551e1b23f7b9c90.dir
+      size: 275042
+      nfiles: 15
+    - path: data_given/sitting
+      md5: e7ae36497ce1a204fc49292f88a7c755.dir
+      size: 281657
+      nfiles: 15
+    - path: data_given/standing
+      md5: c914f81f34e428df5bf169a7066c2b93.dir
+      size: 281976
+      nfiles: 15
+    - path: data_given/walking
+      md5: d31707db3f001689c27a8d88b412739a.dir
+      size: 283590
+      nfiles: 15
+    - path: src/load_n_save.py
+      md5: f71f6e3cca17ebf2f5cc4976787a8d30
+      size: 2233
+    - path: src/utils/all_utils.py
+      md5: f76587d79008d83e48a6de320c0335e5
+      size: 557
+    outs:
+    - path: data/raw/final_data.csv
+      md5: 01171b581fad48e12c9c07901f585649
+      size: 2274222
