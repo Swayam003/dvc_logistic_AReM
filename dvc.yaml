@@ -56,3 +56,14 @@ stages:
       - Logistic_model_params.random_state
     outs:
       - models/Trained_model/Logistic_model.sav
+  evaluate:
+    cmd: python src/evaluate.py --config=config/config.yaml
+    deps:
+      - src/evaluate.py
+      - src/utils/all_utils.py
+      - config/config.yaml
+      - data/splitted_data/x_test.csv
+      - data/splitted_data/y_test.csv
+      - models/Trained_model/Logistic_model.sav
+    outs:
+      - data/evaluation_metrics/scores.json

@@ -4,8 +4,8 @@ stages:
     cmd: python src/load_n_save.py --config=config/config.yaml
     deps:
     - path: config/config.yaml
-      md5: 6a77c2ba4af88a6ba369641de68765c3
-      size: 760
+      md5: b7b1450600e7645393a6a54b78f8c7cd
+      size: 831
     - path: data_given/bending1
       md5: 5d8b3100f2a54b926babe04676e8873a.dir
       size: 132926
@@ -38,8 +38,8 @@ stages:
       md5: 062153a87d52f253119dc722b1bfc386
       size: 2224
     - path: src/utils/all_utils.py
-      md5: 4a85d0f7b524025912d98ff6d63be432
-      size: 1840
+      md5: c974c7f3aab5a214a3a48b850bda2b94
+      size: 2334
     outs:
     - path: data/raw/final_data.csv
       md5: 26bd966b0f146af83718035605b480e4
@@ -48,8 +48,8 @@ stages:
     cmd: python src/EDA_and_Preprocessing.py --config=config/config.yaml
     deps:
     - path: config/config.yaml
-      md5: 6a77c2ba4af88a6ba369641de68765c3
-      size: 760
+      md5: b7b1450600e7645393a6a54b78f8c7cd
+      size: 831
     - path: data/raw/final_data.csv
       md5: 26bd966b0f146af83718035605b480e4
       size: 1894089
@@ -57,12 +57,12 @@ stages:
       md5: 09022bd4d15c789c584fd9c43234a037
       size: 5219
     - path: src/utils/all_utils.py
-      md5: 4a85d0f7b524025912d98ff6d63be432
-      size: 1840
+      md5: c974c7f3aab5a214a3a48b850bda2b94
+      size: 2334
     outs:
     - path: data/EDA_report/profiling_report.html
-      md5: 34a1840cf17a13a5b16d880f43f020ca
-      size: 3125155
+      md5: 24f87cc61c50a4bef4d1fd5f4da9205c
+      size: 3125111
     - path: data/preprocess_data/preprocess_Data.csv
       md5: 2528fefc81c2e13e51bb4b45b4fa53ca
       size: 1475321
@@ -70,8 +70,8 @@ stages:
     cmd: python src/scaling_n_splitting.py --config=config/config.yaml --params=params.yaml
     deps:
     - path: config/config.yaml
-      md5: 6a77c2ba4af88a6ba369641de68765c3
-      size: 760
+      md5: b7b1450600e7645393a6a54b78f8c7cd
+      size: 831
     - path: data/preprocess_data/preprocess_Data.csv
       md5: 2528fefc81c2e13e51bb4b45b4fa53ca
       size: 1475321
@@ -82,8 +82,8 @@ stages:
       md5: 178ae6a04cff12bed80145bbc029468b
       size: 5700
     - path: src/utils/all_utils.py
-      md5: 4a85d0f7b524025912d98ff6d63be432
-      size: 1840
+      md5: c974c7f3aab5a214a3a48b850bda2b94
+      size: 2334
     params:
       params.yaml:
         base.random_state: 144
@@ -108,8 +108,8 @@ stages:
     cmd: python src/train_model.py --config=config/config.yaml --params=params.yaml
     deps:
     - path: config/config.yaml
-      md5: 6a77c2ba4af88a6ba369641de68765c3
-      size: 760
+      md5: b7b1450600e7645393a6a54b78f8c7cd
+      size: 831
     - path: data/splitted_data/x_train.csv
       md5: f29e7c09d824ed4ce334636c0550e2b8
       size: 3152839
@@ -120,11 +120,11 @@ stages:
       md5: 0b5425e49d24e118b7198d14267d941d
       size: 135
     - path: src/train_model.py
-      md5: 9df7f17899771ed879a4f9f523e94752
-      size: 4132
+      md5: 37c1a41ff75262189a5ed5c4b43705f5
+      size: 3979
     - path: src/utils/all_utils.py
-      md5: 4a85d0f7b524025912d98ff6d63be432
-      size: 1840
+      md5: c974c7f3aab5a214a3a48b850bda2b94
+      size: 2334
     params:
       params.yaml:
         Logistic_model_params.multi_class: multinomial
@@ -134,3 +134,28 @@ stages:
     - path: models/Trained_model/Logistic_model.sav
       md5: 53afeb5f17015a8688cfc2642c79ed59
       size: 1483
+  evaluate:
+    cmd: python src/evaluate.py --config=config/config.yaml
+    deps:
+    - path: config/config.yaml
+      md5: b7b1450600e7645393a6a54b78f8c7cd
+      size: 831
+    - path: data/splitted_data/x_test.csv
+      md5: 4297bcb23666dbe24137e3b0425c5b07
+      size: 788709
+    - path: data/splitted_data/y_test.csv
+      md5: ec1b34f460bd105ee5a32cf8997ae6de
+      size: 58727
+    - path: models/Trained_model/Logistic_model.sav
+      md5: 53afeb5f17015a8688cfc2642c79ed59
+      size: 1483
+    - path: src/evaluate.py
+      md5: 70a37b2475325f9a9fccd001788d741e
+      size: 6015
+    - path: src/utils/all_utils.py
+      md5: c974c7f3aab5a214a3a48b850bda2b94
+      size: 2334
+    outs:
+    - path: data/evaluation_metrics/scores.json
+      md5: c04c8acb184d9976c241219725b5e8c1
+      size: 137
