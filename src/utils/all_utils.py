@@ -2,6 +2,7 @@ import yaml
 import os
 import logging
 import pickle
+import json
 
 def read_yaml(path_to_yaml: str) -> dict:
     """
@@ -35,8 +36,8 @@ def save_local_df(data, data_path, index_status=False):
     """
     This function saves the dataframe to CSV File
     :param data: dataframe
-    :param data_path: path to save dataframe
-    :param index_status: default: False
+    :param data_path: str
+    :param index_status: default: Boolean
     """
     try:
         data.to_csv(data_path, index=index_status)
@@ -48,8 +49,8 @@ def save_local_df(data, data_path, index_status=False):
 def save_models(model, model_file_path: str):
     """
     This function is used to save model files
-    :param model: model object
-    :param model_file_path: model file path
+    :param model: object
+    :param model_file_path: str
     """
     try:
         with open(model_file_path, "wb") as f:
@@ -57,4 +58,18 @@ def save_models(model, model_file_path: str):
         logging.info(f"Model is saved at {model_file_path}")
     except Exception as e:
         logging.exception("error while saving model:  ",e)
+        raise e
+
+def save_metrics_report(score_file:dict, score_file_path:str, indentation=4):
+    """
+        This function is used to save metrics report file
+        :param score_file: dict
+        :param score_file_path: str
+        """
+    try:
+        with open(score_file_path, "w") as f:
+            json.dump(score_file, f, indent=indentation)
+        logging.info(f"Score File is saved at {score_file_path}")
+    except Exception as e:
+        logging.exception("error while saving model:  ", e)
         raise e
