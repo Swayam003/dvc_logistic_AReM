@@ -32,9 +32,27 @@ stages:
       - config/config.yaml
       - params.yaml
       - data/preprocess_data/preprocess_Data.csv
+    params:
+      - base.test_size
+      - base.random_state
     outs:
       - models/Standardized_model/StandardScalar_model.sav
       - data/splitted_data/x_train.csv
-      -  data/splitted_data/x_test.csv
+      - data/splitted_data/x_test.csv
       - data/splitted_data/y_train.csv
       - data/splitted_data/y_test.csv
+  train:
+    cmd: python src/train_model.py --config=config/config.yaml --params=params.yaml
+    deps:
+      - src/train_model.py
+      - src/utils/all_utils.py
+      - config/config.yaml
+      - params.yaml
+      - data/splitted_data/x_train.csv
+      - data/splitted_data/y_train.csv
+    params:
+      - Logistic_model_params.multi_class
+      - Logistic_model_params.solver
+      - Logistic_model_params.random_state
+    outs:
+      - models/Trained_model/Logistic_model.sav
