@@ -19,6 +19,8 @@ data:
   y_train_data_file: y_train.csv
   y_test_data_file: y_test.csv
 
+  evaluation_metrics_dir: evaluation_metrics
+  scores: scores.json
 
 models:
   model_dir: models
