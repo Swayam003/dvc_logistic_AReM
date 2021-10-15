@@ -1,3 +1,8 @@
 base:
   test_size: 0.2
   random_state: 144
+
+Logistic_model_params:
+  multi_class: multinomial
+  solver: sag
+  random_state: 40
