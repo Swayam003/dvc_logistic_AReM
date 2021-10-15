@@ -14,16 +14,16 @@ logging.basicConfig(filename=os.path.join(log_dir, 'logging.log'), level=logging
 
 def read_processed_data_path(config_path):
     """
-    his function returns path to CSV file
+    This function returns path to CSV file
     :param config_path: path to config file
-    :return: path to config file
+    :return: path to csv file
     """
     try:
         config = read_yaml(config_path)  # reading config file
         logging.info("Read the yaml successfully")
         data_dir = config["data"]['data_dir']
-        preprocess_data_dir = config["data"]['raw_local_dir']
-        preprocess_data_file = config["data"]['raw_local_file']
+        preprocess_data_dir = config["data"]['preprocess_data_dir']
+        preprocess_data_file = config["data"]['preprocess_data_file']
         preprocess_data_file_path = os.path.join(data_dir, preprocess_data_dir, preprocess_data_file)  # path: data/preprocess_data/preprocess_Data.csv
         return preprocess_data_file_path
     except Exception as e:
@@ -68,6 +68,7 @@ def splitting_n_saving(config_path,params_path):
     """
     This function reads CSV file and splits the data into X_train,X_test,Y_train,Y_test after creating directory for saving the splitted dataset
     :param config_path: path to config file
+    :param params_path: path to params file
     """
 
     try:
